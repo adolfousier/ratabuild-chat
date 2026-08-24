@@ -15,9 +15,7 @@ fn get_database() -> String {
 
 #[cfg(feature = "sqlite")]
 fn get_database() -> String {
-    std::env::var("DATABASE_URL").unwrap_or_else(|_| {
-        format!("sqlite://./ratifact.db?mode=rwc")
-    })
+    std::env::var("DATABASE_URL").unwrap_or("sqlite://./ratifact.db?mode=rwc".to_string())
 }
 
 pub fn load_config() -> Config {

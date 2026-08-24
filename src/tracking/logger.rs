@@ -5,13 +5,13 @@ use crate::db::schema::create_tables;
 
 #[cfg(feature = "postgres")]
 #[derive(Clone)]
-pub struct BuildLogger<> {
+pub struct BuildLogger {
     pub pool: sqlx::PgPool,
 }
 
 #[cfg(feature = "sqlite")]
 #[derive(Clone)]
-pub struct BuildLogger<> {
+pub struct BuildLogger {
     pub pool: sqlx::SqlitePool,
 }
 
@@ -41,5 +41,3 @@ impl BuildLogger {
         Ok(())
     }
 }
-
-

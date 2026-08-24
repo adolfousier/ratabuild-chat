@@ -13,8 +13,6 @@ use std::io::stdout;
 use ui::app::App;
 use utils::logger::log_to_file;
 
-
-
 #[cfg(test)]
 mod config_tests {
     include!("tests/config_tests.rs");

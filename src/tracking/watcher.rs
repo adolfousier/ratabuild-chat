@@ -1,9 +1,9 @@
 // File system watcher for build artifacts
 
-use notify::{RecommendedWatcher, RecursiveMode, Result as NotifyResult, Watcher};
-use std::sync::{Arc, Mutex};
-use std::path::Path;
 use crate::utils::logger::log_to_file;
+use notify::{RecommendedWatcher, RecursiveMode, Result as NotifyResult, Watcher};
+use std::path::Path;
+use std::sync::{Arc, Mutex};
 
 #[derive(Clone)]
 pub struct BuildWatcher {
@@ -35,11 +35,15 @@ impl BuildWatcher {
             notify::Config::default(),
         )
         .unwrap();
-        BuildWatcher { watcher: Arc::new(Mutex::new(watcher)) }
+        BuildWatcher {
+            watcher: Arc::new(Mutex::new(watcher)),
+        }
     }
 
     pub fn watch<P: AsRef<Path>>(&mut self, path: P) -> NotifyResult<()> {
-        self.watcher.lock().unwrap()
+        self.watcher
+            .lock()
+            .unwrap()
             .watch(path.as_ref(), RecursiveMode::Recursive)?;
         Ok(())
     }
